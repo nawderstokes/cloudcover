@@ -1,0 +1,35 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  pypi:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write          # lets GitHub vouch for you to TestPyPI
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv build
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  image:
+    needs: pypi
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write          # lets the built-in token push to ghcr.io
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          file: Dockerfile.release
+          push: true
+          tags: ghcr.io/nawderstokes/cloudcover:${{ github.ref_name }}
