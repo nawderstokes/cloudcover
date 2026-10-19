@@ -7,7 +7,8 @@ jobs:
   pypi:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write          # lets GitHub vouch for you to TestPyPI
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
@@ -20,6 +21,7 @@ jobs:
     needs: pypi
     runs-on: ubuntu-latest
     permissions:
+      contents: read         # lets the built-in token read the repo
       packages: write          # lets the built-in token push to ghcr.io
     steps:
       - uses: actions/checkout@v4
