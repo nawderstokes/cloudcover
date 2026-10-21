@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cloudcover-nawder"
-version = "0.2.2"
+version = "0.2.3"
 description = "Current cloud cover at your location"
 requires-python = ">=3.10"
 dependencies = [
@@ -14,3 +14,12 @@ dependencies = [
 
 [project.scripts]
 cloudcover = "cloudcover:main"
+
+[tool.hatch.envs.default]
+dependencies = ["pytest", "ruff"]
+
+[tool.hatch.envs.default.scripts]
+check = [
+    "ruff check src tests",
+    "pytest -q",
+]
