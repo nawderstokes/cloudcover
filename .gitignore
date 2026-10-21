@@ -17,3 +17,6 @@ build/
 # Editor and OS files
 .DS_Store
 .vscode/
+
+# hatch
+.ruff_cache/
