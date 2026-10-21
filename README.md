@@ -46,4 +46,7 @@ cd cloudcover
 python -m pip install -e .
 ```
 
+If installation reports that your Python version is too old, check it with `python --version`. Cloudcover requires Python 3.10 or newer. Install a newer Python version, then use that version to install the project (for example, `python3.11 -m pip install -e .`).
+If you see the error `"setup.py" was not found`, pip may need to be upgraded. Run `python -m pip install --upgrade pip setuptools wheel` and try installing again.
+
 After installation, run `cloudcover` from your terminal.
