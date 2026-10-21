@@ -52,9 +52,9 @@ pipx install --index-url https://test.pypi.org/simple/ \
 ```
 or with uv
 ```bash
-# install with homebrew
+# install uv with homebrew
 brew install uv
-# or in the case homebrew cannot install `uv` (e.g. on older intel macs), install it directly
+# or install it directly
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 uv tool install --index https://test.pypi.org/simple/ \
