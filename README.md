@@ -42,17 +42,21 @@ Requires Python 3.9 or newer, and is currently only available on macOS.
 
 ### Recommended: pipx or uv
 
-These install `cloudcover` into its own isolated environment, so you don't need to create or activate a virtual environment.
+These install `cloudcover` into its own isolated environment, so you don't need to create or activate a virtual environment, either with pipx:
 
 ```bash
-# with pipx
 brew install pipx && pipx ensurepath    
 pipx install --index-url https://test.pypi.org/simple/ \
   --pip-args="--extra-index-url https://pypi.org/simple/" \
   cloudcover-nawder
-
-# or with uv
+```
+or with uv
+```bash
+# install with homebrew
 brew install uv
+# or in the case homebrew cannot install `uv` (e.g. on older intel macs), install it directly
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 uv tool install --index https://test.pypi.org/simple/ \
   --index-strategy unsafe-best-match cloudcover-nawder
 ```
@@ -60,7 +64,7 @@ uv tool install --index https://test.pypi.org/simple/ \
 Then run it with:
 
 ```bash
-cloudcover --help
+cloudcover
 ```
 
 > The package is currently on TestPyPI. Once it is published on PyPI, the
