@@ -36,17 +36,45 @@ cloudcover --lat 47.6062 --lon -122.3321 --plot
 
 Run `cloudcover --help` to see the available options.
 
-## How to download the code
+## Installation
 
-Clone this repository and install the project locally. Python 3.10 or newer is required.
+Requires Python 3.9 or newer, and is currently only available on macOS.
 
-```console
-git clone https://github.com/nawderstokes/cloudcover.git
-cd cloudcover
-python -m pip install -e .
+### Recommended: pipx or uv
+
+These install `cloudcover` into its own isolated environment, so you don't need to create or activate a virtual environment.
+
+```bash
+# with pipx
+brew install pipx && pipx ensurepath    
+pipx install --index-url https://test.pypi.org/simple/ \
+  --pip-args="--extra-index-url https://pypi.org/simple/" \
+  cloudcover-nawder
+
+# or with uv
+brew install uv
+uv tool install --index https://test.pypi.org/simple/ \
+  --index-strategy unsafe-best-match cloudcover-nawder
 ```
 
-If installation reports that your Python version is too old, check it with `python --version`. Cloudcover requires Python 3.10 or newer. Install a newer Python version, then use that version to install the project (for example, `python3.11 -m pip install -e .`).
-If you see the error `"setup.py" was not found`, pip may need to be upgraded. Run `python -m pip install --upgrade pip setuptools wheel` and try installing again.
+Then run it with:
 
-After installation, run `cloudcover` from your terminal.
+```bash
+cloudcover --help
+```
+
+> The package is currently on TestPyPI. Once it is published on PyPI, the
+> install will simply be `pipx install cloudcover-nawder`.
+
+## Development
+
+To work on the code, clone the repo and use a virtual environment:
+
+```bash
+git clone https://github.com/USERNAME/cloudcover.git
+cd cloudcover
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e .
+```
