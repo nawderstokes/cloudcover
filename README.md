@@ -61,7 +61,7 @@ uv tool install --index https://test.pypi.org/simple/ \
   --index-strategy unsafe-best-match cloudcover-nawder
 ```
 
-Then run it with:
+Then run it:
 
 ```bash
 cloudcover
